@@ -1,12 +1,27 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
+// orden sugerido de la aplicación
+//variables
+const inputAmigo = document.getElementById("amigo");
 // aqui se guardan los nombres de los amigos, declarando la variable
-let listaDeAmigos = [];
-// amigos que participan en le sorteo
-let numeroMaximoDeAmigos = listaDeAmigos;
+const listaAmigos = [];
+const ulListaAmigos = document.getElementById("listaAmigos");
+const ulResultado = document.getElementById("resultado");
 
-
-// ingreso de los nombres de los amigos que van a participar 
-function agregarNombreAmigo() {
-    let input = document.getElementById(amigo);
+// amigos que participan en le sorteo, llamando tambien el boton añadir del HTML
+function agregarAmigo() {
+  //alerta para que se ingrese un valor en la caja, que no quede vacía y poder continuar
+  if (!inputAmigo.value) {
+    alert("Para continuar debes ingresar el nombre de tu amigo");
+  } 
+listaAmigos.push(inputAmigo.value);
+//ulListaAmigos.innerHTML = ulListaAmigos.innerHTML + inputAmigo.value; la siguiente es una acortación de la función, incluyendo el uso de template strings
+ulListaAmigos.innerHTML += `<li>${inputAmigo.value}</li>`;
+};
+// se asigna la funcion de sortear y se habilita el boton de sorteo del HTML
+function sortearAmigo() {
+  // la propiedad length contabiliza los elementos que hay en la lista de amigos que ya es una constante declarada, en conjunto con la funcion math.ramdon nos permite sortear de manera aletoria un elemento ya existen de la lista de amigos
+  const random = Math.floor((Math.random ()*listaAmigos.length));
+  // Aqui se realiza el sorteo del amigo secreto, se declara la constante de amigoSecreto
+  const amigoSecreto = listaAmigos[random];
+  //Nuevamente se usa el recurso del template string para dar el resultado por medio de una constante ya declarada
+  ulResultado.innerHTML = `<li> El amigo secreto que te ha tocado es : ${amigoSecreto}</li>`;
 }
-
